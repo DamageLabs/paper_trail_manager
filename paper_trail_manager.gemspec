@@ -5,7 +5,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name          = 'paper_trail_manager'
-  spec.version       = '0.7.0'
+  spec.version       = '0.8.0'
   spec.authors       = ['Igal Koshevoy', 'Reid Beels']
   spec.authors       = ['mail@reidbeels.com']
   spec.summary       = 'A user interface for `paper_trail` versioning data in Rails applications.'
@@ -19,6 +19,8 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = '>= 3.1'
   spec.add_dependency 'paper_trail', ['>= 12.0']
   spec.add_dependency 'rails', ['>= 6.1', '< 8.0']
+  spec.add_dependency 'nokogiri', ['>= 1.18.3']
+  spec.add_dependency 'rails-html-sanitizer', ['>= 1.6.1']
   spec.add_development_dependency 'appraisal', '~> 2.0'
   spec.add_development_dependency 'factory_bot_rails', '~> 6.0'
   spec.add_development_dependency 'rake', '~> 13.0'
