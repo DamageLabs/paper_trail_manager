@@ -14,11 +14,11 @@ describe PaperTrailManager, versioning: true do
   end
 
   context 'with changes' do
-    let(:reimu) { FactoryGirl.create(:entity, name: 'Miko Hakurei Reimu', status: 'Highly Responsive to Prayers') }
-    let(:flanchan) { FactoryGirl.create(:entity, name: 'Flandre Scarlet', status: 'The Embodiment of Scarlet Devil') }
-    let(:sakuya) { FactoryGirl.create(:entity, name: 'Sakuya Izayoi', status: 'Flowering Night') }
-    let(:kyuu_hachi) { FactoryGirl.create(:platform, name: 'PC-9801', status: 'SUGOI!!1!') }
-    let!(:uinodouzu) { FactoryGirl.create(:platform, name: 'Mikorusofto Uinodouzu', status: 'o-O') }
+    let(:reimu) { FactoryBot.create(:entity, name: 'Miko Hakurei Reimu', status: 'Highly Responsive to Prayers') }
+    let(:flanchan) { FactoryBot.create(:entity, name: 'Flandre Scarlet', status: 'The Embodiment of Scarlet Devil') }
+    let(:sakuya) { FactoryBot.create(:entity, name: 'Sakuya Izayoi', status: 'Flowering Night') }
+    let(:kyuu_hachi) { FactoryBot.create(:platform, name: 'PC-9801', status: 'SUGOI!!1!') }
+    let!(:uinodouzu) { FactoryBot.create(:platform, name: 'Mikorusofto Uinodouzu', status: 'o-O') }
 
     let!(:flanchan_id) { flanchan.id }
 
@@ -161,7 +161,7 @@ describe PaperTrailManager, versioning: true do
           end
 
           it 'rollbacks a delete by restoring the record' do
-            Entity.exists?(flanchan_id).should be_falsey
+            expect(Entity.exists?(flanchan_id)).to be_falsey
 
             put change_path(PaperTrail::Version.where(item_id: flanchan_id, item_type: 'Entity').last)
 

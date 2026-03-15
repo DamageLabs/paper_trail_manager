@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'factory_girl_rails'
+require 'factory_bot_rails'
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :entity do
     sequence(:name)   { |n| "name_#{n}" }
     sequence(:status) { |n| "status_#{n}" }

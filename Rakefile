@@ -29,8 +29,9 @@ end
 
 task :generate_spec_app do
   sh 'rm -rf spec/dummy'
-  sh 'rails new spec/dummy --skip-bootsnap --skip-bundle --skip-yarn \
-    --skip-git --skip-action-mailer --skip-puma --skip-test --skip-coffee \
-    --skip-spring --skip-listen --skip-turbolinks \
+  sh 'rails new spec/dummy --skip-bootsnap --skip-bundle \
+    --skip-git --skip-action-mailer --skip-puma --skip-test \
+    --skip-spring --skip-hotwire --skip-jbuilder \
+    --skip-action-mailbox --skip-action-text --skip-active-storage \
     --template=spec/app_template.rb'
 end
