@@ -2,7 +2,7 @@
 
 <p>
   Show:
-  <%= ([link_to('All', changes_path)] + change_item_types.map { |type| link_to(type.pluralize, changes_path(:type => type)) }).join(' | ').html_safe %>
+  <%= ([link_to('All', changes_path)] + change_item_types.map { |type| link_to(type.pluralize, changes_path(type: type)) }).join(' | ').html_safe %>
 </p>
 <div class="table-responsive">
   <table class='changes_table table table-bordered'>
@@ -23,7 +23,7 @@
       <% if @versions.any? %>
         <% @versions.each do |version| %>
           <% next unless change_show_allowed?(version) %>
-          <%= render :partial => 'version', :object => version %>
+          <%= render partial: 'version', object: version %>
         <% end %>
       <% else %>
         <td rowspan='2'> &mdash; No changes found &mdash; </td>
@@ -31,4 +31,3 @@
     </tbody>
   </table>
 </div>
-

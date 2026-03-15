@@ -59,9 +59,9 @@ class PaperTrailManager
     end
 
     def change_item_types
-      ActiveRecord::Base.subclasses.select do |klass|
+      ActiveRecord::Base.descendants.select do |klass|
         klass.include?(PaperTrail::Model::InstanceMethods)
-      end.map(&:to_s)
+      end.map(&:to_s).sort
     end
 
     # Returns HTML link for the item stored in the version, e.g. a link to a Company record stored in the version.

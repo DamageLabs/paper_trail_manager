@@ -20,7 +20,7 @@
         <% end %>
       <% end %>
       <% if change_revert_allowed?(version) %>
-        <%= link_to 'Roll back', change_path(version), :method => 'put', :class => 'rollback', :data => { :confirm => 'Are you sure?' } %>
+        <%= button_to 'Roll back', change_path(version), method: :put, class: 'rollback', form: { data: { turbo_confirm: 'Are you sure?' } } %>
       <% end %>
     </p>
     <% if version.event == 'update' or version.event == 'create' %>
