@@ -1,9 +1,13 @@
 <h1>Change <%= @version.id %></h1>
 
 <table class='changes_table'>
-  <tr class='changes_header'>
-    <th class='change_time'>Time</th>
-    <th class='change_details'>Attribute with previous and current values</th>
+  <thead>
+    <tr class='changes_header'>
+      <th class='change_time'>Time</th>
+      <th class='change_details'>Attribute with previous and current values</th>
+    </tr>
+  </thead>
+  <tbody>
     <%= render partial: 'version', object: @version %>
-  </tr>
+  </tbody>
 </table>
