@@ -28,7 +28,7 @@ class PaperTrailManager
       @page = nil if @page.zero?
 
       @per_page = params[:per_page].to_i
-      @per_page = nil if @per_page.zero?
+      @per_page = PER_PAGE if @per_page.zero?
 
       @versions = if defined?(WillPaginate)
                     @versions.paginate(page: @page, per_page: @per_page)
