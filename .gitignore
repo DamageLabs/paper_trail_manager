@@ -14,3 +14,4 @@ mkmf.log
 spec/dummy
 Gemfile.lock
 gemfiles/*.lock
+*.gem
