@@ -4,6 +4,19 @@
   Show:
   <%= ([link_to('All', changes_path)] + change_item_types.map { |type| link_to(type.pluralize, changes_path(type: type)) }).join(' | ').html_safe %>
 </p>
+
+<%= form_tag changes_path, method: :get, class: 'changes_date_filter' do %>
+  <%= hidden_field_tag :type, params[:type] if params[:type] %>
+  <%= hidden_field_tag :id, params[:id] if params[:id] %>
+  <label for="from">From:</label>
+  <%= date_field_tag :from, params[:from], id: 'from' %>
+  <label for="to">To:</label>
+  <%= date_field_tag :to, params[:to], id: 'to' %>
+  <%= submit_tag 'Filter', name: nil %>
+  <% if params[:from].present? || params[:to].present? %>
+    <%= link_to 'Clear', changes_path(type: params[:type], id: params[:id]), class: 'clear_filter' %>
+  <% end %>
+<% end %>
 <div class="table-responsive">
   <table class='changes_table table table-bordered'>
     <tfoot>

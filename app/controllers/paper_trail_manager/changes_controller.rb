@@ -23,6 +23,12 @@ class PaperTrailManager
       @versions = @versions.where(item_type: params[:type]) if params[:type]
       @versions = @versions.where(item_id: params[:id]) if params[:id]
 
+      # Date range filtering
+      @from = parse_date(params[:from])
+      @to = parse_date(params[:to])
+      @versions = @versions.where('created_at >= ?', @from.beginning_of_day) if @from
+      @versions = @versions.where('created_at <= ?', @to.end_of_day) if @to
+
       # Ensure pagination parameters have sensible values
       @page = params[:page].to_i
       @page = nil if @page.zero?
@@ -127,5 +133,14 @@ class PaperTrailManager
       PaperTrailManager.allow_revert?(self, version)
     end
     helper_method :change_revert_allowed?
+
+    # Parse a date string, returning nil for invalid/missing values
+    def parse_date(value)
+      return nil if value.blank?
+
+      Date.parse(value)
+    rescue Date::Error, ArgumentError
+      nil
+    end
   end
 end
