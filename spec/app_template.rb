@@ -2,13 +2,6 @@
 
 gem 'paper_trail_manager', path: __FILE__ + '/../../../'
 
-# Create manifest for sprockets if needed (Rails < 7.0)
-unless File.exist?('app/assets/config/manifest.js')
-  create_file 'app/assets/config/manifest.js'
-  append_to_file 'app/assets/config/manifest.js', "//= link application.css\n"
-  append_to_file 'app/assets/config/manifest.js', "//= link application.js\n"
-end
-
 generate 'paper_trail:install'
 generate 'resource', 'entity name:string status:string --no-controller-specs --no-helper-specs'
 generate 'resource', 'platform name:string status:string --no-controller-specs --no-helper-specs'

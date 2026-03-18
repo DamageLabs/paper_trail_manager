@@ -33,5 +33,6 @@ task :generate_spec_app do
     --skip-git --skip-action-mailer --skip-puma --skip-test \
     --skip-spring --skip-hotwire --skip-jbuilder \
     --skip-action-mailbox --skip-action-text --skip-active-storage \
+    --skip-asset-pipeline \
     --template=spec/app_template.rb'
 end

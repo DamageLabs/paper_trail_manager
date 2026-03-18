@@ -23,8 +23,6 @@ jobs:
           - '3.2'
           - '3.3'
         gemfile:
-          - gemfiles/rails_6.1_paper_trail_12.0_kaminari.gemfile
-          - gemfiles/rails_6.1_paper_trail_12.0_will_paginate.gemfile
           - gemfiles/rails_7.0_paper_trail_12.0_kaminari.gemfile
           - gemfiles/rails_7.0_paper_trail_12.0_will_paginate.gemfile
           - gemfiles/rails_7.0_paper_trail_15.0_kaminari.gemfile
