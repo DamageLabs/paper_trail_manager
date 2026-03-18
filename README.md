@@ -45,6 +45,22 @@ resources :changes, controller: 'paper_trail_manager/changes'
 
 Restart your server and visit `/changes` to browse, view, and revert your changes.
 
+### Stylesheet (optional)
+
+A default stylesheet is included. Add to your layout or application CSS:
+
+```erb
+<%= stylesheet_link_tag 'paper_trail_manager/changes' %>
+```
+
+Or require it in `app/assets/stylesheets/application.css`:
+
+```css
+/*= require paper_trail_manager/changes */
+```
+
+The styles are low-specificity and easy to override in your own stylesheet.
+
 ## Configuration
 
 Create an initializer (e.g. `config/initializers/paper_trail_manager.rb`) to customize behavior.
