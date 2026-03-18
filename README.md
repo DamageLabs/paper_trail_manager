@@ -7,7 +7,7 @@ Browse, view, and revert changes to records in Ruby on Rails applications using 
 ## Requirements
 
 - **Ruby** >= 3.1
-- **Rails** >= 6.1, < 8.0
+- **Rails** >= 7.0, < 8.0
 - **PaperTrail** >= 12.0
 - A pagination library: [will_paginate](https://github.com/mislav/will_paginate) or [Kaminari](https://github.com/kaminari/kaminari)
 
@@ -47,13 +47,26 @@ Create an initializer (e.g. `config/initializers/paper_trail_manager.rb`) to cus
 
 ### Authorization
 
-Control when reverts are allowed:
+Control access to the index, show, and revert actions independently:
 
 ```ruby
+# Control who can view the changes index
+PaperTrailManager.allow_index_when do |controller|
+  controller.current_user.present?
+end
+
+# Control who can view individual change details (defaults to allow_index rules)
+PaperTrailManager.allow_show_when do |controller, version|
+  controller.current_user&.admin? || version.whodunnit == controller.current_user&.id&.to_s
+end
+
+# Control who can revert changes
 PaperTrailManager.allow_revert_when do |controller, version|
   controller.current_user&.admin?
 end
 ```
+
+> **Note:** If you only call `allow_index_when`, the same block is used as the default for `allow_show_when`. Call `allow_show_when` separately to override show authorization independently.
 
 ### Whodunnit
 
@@ -79,6 +92,14 @@ Customize (or disable) the user path helper:
 ```ruby
 PaperTrailManager.user_path_method = :admin_path  # defaults to :user_path
 PaperTrailManager.user_path_method = nil           # no user link
+```
+
+### Pagination
+
+The index page defaults to 50 items per page. Override via query parameter:
+
+```
+/changes?per_page=25
 ```
 
 ### Engine Integration
@@ -115,12 +136,11 @@ Tests run against multiple combinations via [Appraisal](https://github.com/thoug
 
 | Rails | PaperTrail | Pagination |
 |-------|-----------|------------|
-| 6.1   | 12.0      | kaminari, will_paginate |
 | 7.0   | 12.0      | kaminari, will_paginate |
 | 7.0   | 15.0      | kaminari, will_paginate |
 | 7.1   | 15.0      | kaminari, will_paginate |
 
-CI runs each combination across Ruby 3.1, 3.2, and 3.3.
+CI runs each combination across Ruby 3.1, 3.2, and 3.3 (18 jobs total).
 
 ### Adding Support for New Versions
 
@@ -128,6 +148,17 @@ CI runs each combination across Ruby 3.1, 3.2, and 3.3.
 2. Run `appraisal generate && appraisal install`
 3. Fix any breaking changes
 4. Submit a pull request
+
+## Recent Changes (0.8.0)
+
+- **Security fix:** `allow_show?` now correctly delegates to `allow_show_block` (was incorrectly using `allow_index_block`)
+- **Bug fix:** Gemspec `authors` field was being overwritten by `email`
+- **Bug fix:** `PER_PAGE` constant (50) now used as pagination default
+- **CI:** Dropped Rails 6.1 (incompatible with Ruby 3.1+), fixed Psych deserialization, added asset pipeline skip
+- **Tests:** Added unit tests for authorization block delegation
+- Modernized for Ruby 3.1–3.3 and Rails 7.0–7.1
+
+See [CHANGES.md](CHANGES.md) for full history.
 
 ## License
 
