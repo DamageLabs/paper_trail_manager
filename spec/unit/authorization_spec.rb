@@ -1,4 +1,8 @@
-require 'kaminari/core'
+begin
+  require 'kaminari/core'
+rescue LoadError
+  require 'will_paginate'
+end
 require 'paper_trail_manager'
 
 RSpec.describe PaperTrailManager, 'authorization' do
