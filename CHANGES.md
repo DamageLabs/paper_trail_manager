@@ -1,6 +1,17 @@
 Changes to `paper_trail_manager`
 ================================
 
+* 0.9.0
+    * Add date range filtering to changes index via `from` and `to` query parameters
+    * Add date filter UI with date inputs, filter button, and clear link
+    * Add Rails install generator (`rails generate paper_trail_manager:install`)
+    * Add I18n support for all UI strings (30 translation keys, default English locale)
+    * Add authorization integration tests (unauthorized index/show/revert, non-existent records)
+    * Add unit tests for ChangesHelper methods (text_or_nil, changes_for, change_item_types, version_reify)
+    * Add specs for JSON and Atom response formats with filter coverage
+    * Host apps can override any translation key in their own locale files
+    * Test count: 19 → 50
+
 * 0.8.0
     * Fix `allow_show?` calling `allow_index_block` instead of `allow_show_block` — `allow_show_when` configuration was previously silently ignored (security fix)
     * Fix gemspec `authors` field being overwritten by misplaced `email` assignment
