@@ -162,7 +162,7 @@ CI runs each combination across Ruby 3.1, 3.2, and 3.3 (18 jobs total).
 - **Tests:** Added unit tests for authorization block delegation
 - Modernized for Ruby 3.1–3.3 and Rails 7.0–7.1
 
-See [CHANGES.md](CHANGES.md) for full history.
+See [CHANGELOG.md](CHANGELOG.md) for full history.
 
 ## License
 
