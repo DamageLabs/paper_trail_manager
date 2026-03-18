@@ -1,6 +1,19 @@
 Changes to `paper_trail_manager`
 ================================
 
+* 0.8.0
+    * **Security fix:** `allow_show?` now correctly delegates to `allow_show_block` instead of `allow_index_block` — `allow_show_when` configuration was previously silently ignored
+    * **Bug fix:** Gemspec `authors` field was being overwritten by misplaced `email` assignment
+    * **Bug fix:** `PER_PAGE` constant (50) now used as default pagination when `per_page` param is not provided
+    * **Bug fix:** Fixed broken HTML structure in show view (version partial nested inside header `<tr>`) and index view (empty state `<td>` without `<tr>` wrapper)
+    * **CI:** Dropped Rails 6.1 from test matrix (incompatible with Ruby 3.1+)
+    * **CI:** Fixed `rails new` asset pipeline error on Rails 7.0/7.1
+    * **CI:** Fixed `Psych::DisallowedClass` error on revert tests (Ruby 3.1+ YAML deserialization)
+    * **Tests:** Added unit tests for authorization block delegation
+    * Drop support for Rails < 7.0
+    * Add support for Ruby 3.1, 3.2, and 3.3
+    * Add support for PaperTrail 12.x and 15.x
+
 * 0.7.0
     * Add support for Rails 5 and 6
     * Add support for paper_trail 5.x – 10.x
