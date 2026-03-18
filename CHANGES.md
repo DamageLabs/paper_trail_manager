@@ -2,15 +2,20 @@ Changes to `paper_trail_manager`
 ================================
 
 * 0.8.0
-    * **Security fix:** `allow_show?` now correctly delegates to `allow_show_block` instead of `allow_index_block` — `allow_show_when` configuration was previously silently ignored
-    * **Bug fix:** Gemspec `authors` field was being overwritten by misplaced `email` assignment
-    * **Bug fix:** `PER_PAGE` constant (50) now used as default pagination when `per_page` param is not provided
-    * **Bug fix:** Fixed broken HTML structure in show view (version partial nested inside header `<tr>`) and index view (empty state `<td>` without `<tr>` wrapper)
-    * **CI:** Dropped Rails 6.1 from test matrix (incompatible with Ruby 3.1+)
-    * **CI:** Fixed `rails new` asset pipeline error on Rails 7.0/7.1
-    * **CI:** Fixed `Psych::DisallowedClass` error on revert tests (Ruby 3.1+ YAML deserialization)
-    * **Tests:** Added unit tests for authorization block delegation
+    * Fix `allow_show?` calling `allow_index_block` instead of `allow_show_block` — `allow_show_when` configuration was previously silently ignored (security fix)
+    * Fix gemspec `authors` field being overwritten by misplaced `email` assignment
+    * Fix `PER_PAGE` constant (50) not being used as default pagination
+    * Fix broken HTML structure in show view (nested `<tr>` tags) and index view (unwrapped `<td>`)
+    * Add date range filtering to changes index via `from` and `to` query parameters
+    * Add date filter UI with date inputs, filter button, and clear link
+    * Add authorization integration tests (unauthorized index/show/revert, non-existent records)
+    * Add unit tests for ChangesHelper methods (text_or_nil, changes_for, change_item_types, version_reify)
+    * Add specs for JSON and Atom response formats with filter coverage
+    * Add date range filter tests
     * Drop support for Rails < 7.0
+    * Drop Rails 6.1 from CI matrix (incompatible with Ruby 3.1+)
+    * Fix `rails new` asset pipeline error in CI for Rails 7.0/7.1
+    * Fix `Psych::DisallowedClass` error on revert tests (Ruby 3.1+ YAML deserialization)
     * Add support for Ruby 3.1, 3.2, and 3.3
     * Add support for PaperTrail 12.x and 15.x
 
