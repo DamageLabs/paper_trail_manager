@@ -7,8 +7,9 @@ RSpec.describe PaperTrailManager, 'authorization' do
 
   after do
     # Reset blocks to defaults
-    PaperTrailManager.allow_index_block = nil
-    PaperTrailManager.allow_show_block = nil
+    default = proc { true }
+    PaperTrailManager.allow_index_block = default
+    PaperTrailManager.allow_show_block = default
   end
 
   describe '.allow_show?' do
