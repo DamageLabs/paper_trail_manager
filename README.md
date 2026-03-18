@@ -1,6 +1,10 @@
 # PaperTrailManager
 
 [![CI](https://github.com/DamageLabs/paper_trail_manager/actions/workflows/test.yml/badge.svg)](https://github.com/DamageLabs/paper_trail_manager/actions/workflows/test.yml)
+[![Gem Version](https://badge.fury.io/rb/paper_trail_manager.svg)](https://rubygems.org/gems/paper_trail_manager)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Ruby](https://img.shields.io/badge/Ruby-3.1%2B-red.svg)](https://www.ruby-lang.org/)
+[![Rails](https://img.shields.io/badge/Rails-7.0%2B-red.svg)](https://rubyonrails.org/)
 
 Browse, view, and revert changes to records in Ruby on Rails applications using the [paper_trail](https://github.com/paper-trail-gem/paper_trail) gem.
 
