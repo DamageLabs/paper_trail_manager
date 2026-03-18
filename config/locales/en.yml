@@ -1,0 +1,30 @@
+en:
+  paper_trail_manager:
+    changes:
+      index:
+        title: "Changes"
+        show_label: "Show:"
+        all: "All"
+        no_changes: "No changes found"
+        time: "Time"
+        details: "Attribute with previous and current values"
+      show:
+        title: "Change %{id}"
+      filter:
+        from: "From:"
+        to: "To:"
+        submit: "Filter"
+        clear: "Clear"
+      version:
+        change_id: "Change #%{id}"
+        roll_back: "Roll back"
+        confirm_rollback: "Are you sure?"
+        by: "by"
+    flash:
+      index_denied: "You do not have permission to list changes."
+      show_denied: "You do not have permission to show that change."
+      revert_denied: "You do not have permission to revert this change."
+      not_found: "No such version."
+      rollback_create: "Rolled back newly-created record by destroying it."
+      rollback_update: "Rolled back changes to this record."
+      rollback_failed: "Couldn't rollback. Sorry."

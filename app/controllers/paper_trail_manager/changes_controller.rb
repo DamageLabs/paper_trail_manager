@@ -15,7 +15,7 @@ class PaperTrailManager
     # List changes
     def index
       unless change_index_allowed?
-        flash[:error] = 'You do not have permission to list changes.'
+        flash[:error] = t('paper_trail_manager.flash.index_denied')
         return(redirect_to root_url)
       end
 
@@ -54,12 +54,12 @@ class PaperTrailManager
       begin
         @version = PaperTrail::Version.find(params[:id])
       rescue ActiveRecord::RecordNotFound
-        flash[:error] = 'No such version.'
+        flash[:error] = t('paper_trail_manager.flash.not_found')
         return(redirect_to action: :index)
       end
 
       unless change_show_allowed?(@version)
-        flash[:error] = 'You do not have permission to show that change.'
+        flash[:error] = t('paper_trail_manager.flash.show_denied')
         return(redirect_to action: :index)
       end
 
@@ -74,12 +74,12 @@ class PaperTrailManager
       begin
         @version = PaperTrail::Version.find(params[:id])
       rescue ActiveRecord::RecordNotFound
-        flash[:error] = 'No such version.'
+        flash[:error] = t('paper_trail_manager.flash.not_found')
         return(redirect_to(changes_path))
       end
 
       unless change_revert_allowed?(@version)
-        flash[:error] = 'You do not have permission to revert this change.'
+        flash[:error] = t('paper_trail_manager.flash.revert_denied')
         return(redirect_to changes_path)
       end
 
@@ -93,14 +93,14 @@ class PaperTrailManager
 
       if @result
         if @version.event == 'create'
-          flash[:notice] = 'Rolled back newly-created record by destroying it.'
+          flash[:notice] = t('paper_trail_manager.flash.rollback_create')
           redirect_to changes_path
         else
-          flash[:notice] = 'Rolled back changes to this record.'
+          flash[:notice] = t('paper_trail_manager.flash.rollback_update')
           redirect_to change_item_url(@version)
         end
       else
-        flash[:error] = "Couldn't rollback. Sorry."
+        flash[:error] = t('paper_trail_manager.flash.rollback_failed')
         redirect_to changes_path
       end
     end

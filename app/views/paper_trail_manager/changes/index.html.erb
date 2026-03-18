@@ -1,22 +1,23 @@
-<h1>Changes</h1>
+<h1><%= t('paper_trail_manager.changes.index.title') %></h1>
 
 <p>
-  Show:
-  <%= ([link_to('All', changes_path)] + change_item_types.map { |type| link_to(type.pluralize, changes_path(type: type)) }).join(' | ').html_safe %>
+  <%= t('paper_trail_manager.changes.index.show_label') %>
+  <%= ([link_to(t('paper_trail_manager.changes.index.all'), changes_path)] + change_item_types.map { |type| link_to(type.pluralize, changes_path(type: type)) }).join(' | ').html_safe %>
 </p>
 
 <%= form_tag changes_path, method: :get, class: 'changes_date_filter' do %>
   <%= hidden_field_tag :type, params[:type] if params[:type] %>
   <%= hidden_field_tag :id, params[:id] if params[:id] %>
-  <label for="from">From:</label>
+  <label for="from"><%= t('paper_trail_manager.changes.filter.from') %></label>
   <%= date_field_tag :from, params[:from], id: 'from' %>
-  <label for="to">To:</label>
+  <label for="to"><%= t('paper_trail_manager.changes.filter.to') %></label>
   <%= date_field_tag :to, params[:to], id: 'to' %>
-  <%= submit_tag 'Filter', name: nil %>
+  <%= submit_tag t('paper_trail_manager.changes.filter.submit'), name: nil %>
   <% if params[:from].present? || params[:to].present? %>
-    <%= link_to 'Clear', changes_path(type: params[:type], id: params[:id]), class: 'clear_filter' %>
+    <%= link_to t('paper_trail_manager.changes.filter.clear'), changes_path(type: params[:type], id: params[:id]), class: 'clear_filter' %>
   <% end %>
 <% end %>
+
 <div class="table-responsive">
   <table class='changes_table table table-bordered'>
     <tfoot>
@@ -28,8 +29,8 @@
     </tfoot>
     <thead>
       <tr class='changes_header'>
-        <th class='change_time'>Time</th>
-        <th class='change_details'>Attribute with previous and current values</th>
+        <th class='change_time'><%= t('paper_trail_manager.changes.index.time') %></th>
+        <th class='change_details'><%= t('paper_trail_manager.changes.index.details') %></th>
       </tr>
     </thead>
     <tbody>
@@ -40,7 +41,7 @@
         <% end %>
       <% else %>
         <tr>
-          <td colspan='2'> &mdash; No changes found &mdash; </td>
+          <td colspan='2'> &mdash; <%= t('paper_trail_manager.changes.index.no_changes') %> &mdash; </td>
         </tr>
       <% end %>
     </tbody>

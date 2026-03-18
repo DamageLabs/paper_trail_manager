@@ -1,6 +1,6 @@
 <tr class='change_row <%= "change_event_#{version.event} #{version.event} #{version.event}, #{version.item_type.downcase}" %>'>
   <td class='change_time'>
-    <span class='change_id'>Change #<%= version.id %></span>
+    <span class='change_id'><%= t('paper_trail_manager.changes.version.change_id', id: version.id) %></span>
     <div class='date'> <%= version.created_at.strftime('%Y-%m-%d') %> </div>
     <div class='time'> <%= version.created_at.strftime('%H:%M:%S') %> </div>
   </td>
@@ -11,16 +11,16 @@
       <% if PaperTrailManager.whodunnit_class && version.whodunnit %>
         <% if user = PaperTrailManager.whodunnit_class.find(version.whodunnit) rescue nil %>
           <% if PaperTrailManager.user_path_method && user %>
-            by <%= link_to(h(user.send(PaperTrailManager.whodunnit_name_method)), send(:user_path_method, user)) %>
+            <%= t('paper_trail_manager.changes.version.by') %> <%= link_to(h(user.send(PaperTrailManager.whodunnit_name_method)), send(:user_path_method, user)) %>
           <% else %>
-            by <%= h(user.send(PaperTrailManager.whodunnit_name_method)) %>
+            <%= t('paper_trail_manager.changes.version.by') %> <%= h(user.send(PaperTrailManager.whodunnit_name_method)) %>
           <% end %>
         <% else %>
-          by <%= version.whodunnit %>
+          <%= t('paper_trail_manager.changes.version.by') %> <%= version.whodunnit %>
         <% end %>
       <% end %>
       <% if change_revert_allowed?(version) %>
-        <%= button_to 'Roll back', change_path(version), method: :put, class: 'rollback', form: { data: { turbo_confirm: 'Are you sure?' } } %>
+        <%= button_to t('paper_trail_manager.changes.version.roll_back'), change_path(version), method: :put, class: 'rollback', form: { data: { turbo_confirm: t('paper_trail_manager.changes.version.confirm_rollback') } } %>
       <% end %>
     </p>
     <% if version.event == 'update' or version.event == 'create' %>

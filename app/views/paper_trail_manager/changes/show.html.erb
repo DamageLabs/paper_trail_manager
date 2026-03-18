@@ -1,10 +1,10 @@
-<h1>Change <%= @version.id %></h1>
+<h1><%= t('paper_trail_manager.changes.show.title', id: @version.id) %></h1>
 
 <table class='changes_table'>
   <thead>
     <tr class='changes_header'>
-      <th class='change_time'>Time</th>
-      <th class='change_details'>Attribute with previous and current values</th>
+      <th class='change_time'><%= t('paper_trail_manager.changes.index.time') %></th>
+      <th class='change_details'><%= t('paper_trail_manager.changes.index.details') %></th>
     </tr>
   </thead>
   <tbody>
