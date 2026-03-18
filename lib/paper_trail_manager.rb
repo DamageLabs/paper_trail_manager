@@ -14,6 +14,10 @@ rescue LoadError
 end
 
 class PaperTrailManager < Rails::Engine
+  initializer 'paper_trail_manager.i18n' do
+    config.i18n.load_path += Dir[root.join('config', 'locales', '*.yml')]
+  end
+
   initializer 'paper_trail_manager.pagination' do
     if defined?(WillPaginate)
       ::ActionView::Base.define_method(:paginate) { |*args, **kwargs, &block| will_paginate(*args, **kwargs, &block) }
