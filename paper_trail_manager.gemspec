@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.name          = 'paper_trail_manager'
   spec.version       = '0.8.0'
   spec.authors       = ['Igal Koshevoy', 'Reid Beels']
-  spec.authors       = ['mail@reidbeels.com']
+  spec.email         = ['mail@reidbeels.com']
   spec.summary       = 'A user interface for `paper_trail` versioning data in Rails applications.'
   spec.description   = 'Browse, subscribe, view and revert changes to records when using Rails and the `paper_trail` gem.'
   spec.homepage      = 'https://github.com/DamageLabs/paper_trail_manager'
