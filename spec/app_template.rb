@@ -25,6 +25,7 @@ inject_into_class 'app/models/entity.rb', 'Entity', model_body
 inject_into_class 'app/models/platform.rb', 'Platform', model_body
 
 route "resources :changes, controller: 'paper_trail_manager/changes'"
+route "root to: 'paper_trail_manager/changes#index'"
 
 # Allow YAML deserialization of ActiveSupport::TimeWithZone (Ruby 3.1+ Psych 4)
 initializer 'permitted_classes.rb', <<~RUBY
