@@ -1,6 +1,12 @@
 Changes to `paper_trail_manager`
 ================================
 
+* 1.0.0
+    * Ship default stylesheet for changes views (table formatting, event color coding, diff highlighting, rollback button, date filter form)
+    * Include via `stylesheet_link_tag` or `require` in application.css
+    * Low-specificity selectors for easy overriding by host apps
+    * Add `.gitignore` for `.gem` build artifacts
+
 * 0.9.0
     * Add date range filtering to changes index via `from` and `to` query parameters
     * Add date filter UI with date inputs, filter button, and clear link
